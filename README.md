@@ -33,7 +33,7 @@ ps:若要进行修改
       "presets": ["react-hmre"]
     }
   }
-}`
+}`  
 4. 运行server.js（启动服务器）。  
 
 学习资料：http://cn.redux.js.org/docs/react-redux/api.html
