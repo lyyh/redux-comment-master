@@ -21,10 +21,10 @@ Provider 使组件层级中的 connect() 方法都能够获得 Redux store
 使用fetch的时候需要注意:  
 fetch 传递的 request默认不带cookie，所以要在fetch中加入参数:`credentials: 'same-origin'` 表示传递cookie  
 
-ps:若要进行修改
-1. 安装依赖
-2. 在index.html中引入文件(bundle.js)
-3. 修改.babelrc配置
+ps:若要进行修改  
+1. 安装依赖  
+2. 在index.html中引入文件(bundle.js)  
+3. 修改.babelrc配置   
 `{
   "presets": ["es2015", "react"],
   "plugins": ["transform-object-rest-spread"],
@@ -34,7 +34,7 @@ ps:若要进行修改
     }
   }
 }`
-4. 运行server.js（启动服务器）。
+4. 运行server.js（启动服务器）。  
 
 学习资料：http://cn.redux.js.org/docs/react-redux/api.html
 
