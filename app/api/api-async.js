@@ -28,7 +28,7 @@ export const storeDataAsync = (callback,postList) => {
 			 'Accept': 'application/json',
         	 "Content-Type": "application/json"
 		},
-		body: JSON.stringify(postList),
+		body: JSON.stringify(postList)
 	})
 	.catch(e => {
 		console.log(e)

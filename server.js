@@ -24,10 +24,6 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use(express.static(path.join(__dirname, 'dist')));
 
-//跳转至首页
-app.get("/", function(req, res) {
-  res.sendFile(__dirname + 'index.html')
-})
 
 //获取留言数据
 app.get('/data',function(req,res){

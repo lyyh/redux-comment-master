@@ -2,7 +2,7 @@
 	异步Action Creator(thunk)
 */
 
-import {fetchDataAsync,storeDataAsync} from '../api/api-message'
+import {fetchDataAsync,storeDataAsync} from '../api/api-async'
 import * as types from '../constants/ActionTypes'
 
 //获得留言信息

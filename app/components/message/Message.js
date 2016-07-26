@@ -1,14 +1,36 @@
 //留言信息
-import React from 'react'
+import React,{PropTypes} from 'react'
 import StyleSheet from './message.less'
 
 //所有留言
-const Message = ({items,delMsgHandler}) => {
 
-		//留言条数
-		let msgNum = 0
+class Message extends React.Component {
+    constructor(props) {
+        super(props);
+        this.displayName = 'Message';
+    }
+    render() {
+    	const {items,delMsgHandler} = this.props
 
-		const msgList = items.messages.map(function(listItem,i){
+    	let msgNum = 0
+
+    	const isDelMsg = (listItem,i) => {
+    		if(i == 0){
+    			return 
+    		}else{
+    			return (
+    				<a className='msg-delete' value={listItem.id} onClick={
+					e => {
+						let index = e.target.getAttribute('value')
+						e.preventDefault()
+						delMsgHandler(index)
+					}
+				} > 删除该评论 < /a>
+					)
+    		}
+    	}
+
+		const getMsgList = items.messages.map((listItem,i) => {
 
 			if(typeof listItem == 'undefined' || listItem == null ){
 				return 
@@ -21,12 +43,7 @@ const Message = ({items,delMsgHandler}) => {
 					<div className='msg-header'>
 						<p>
 							<span className='msg-name'>{listItem.name}</span>说：
-							<a className='msg-delete' value={listItem.id} onClick={
-								e => {
-									 let index = e.target.getAttribute('value')
-									 e.preventDefault()
-									 delMsgHandler(index)
-								}}>删除该评论</a>
+							{isDelMsg(listItem,i)}
 						</p>
 					</div>
 					<div className='msg-content'>
@@ -41,12 +58,24 @@ const Message = ({items,delMsgHandler}) => {
 					)
 		})
 
+
         return (
         	<section>
 				<div className='msg-title'>留言(<span className='msg-num'>{msgNum}</span>条)</div>
-				<div>{msgList}</div>
+				<div>{getMsgList}</div>
 			</section>
-        	)
+        )
+    }
 }
 
-export default Message
+Message.PropTypes = {
+    items: PropTypes.objectOf(PropTypes.arrayOf(PropTypes.shape({
+        id: PropTypes.number.isRequired,
+        name: PropTypes.string.isRequired,
+        text: PropTypes.string.isRequired,
+        time: PropTypes.string.isRequired
+    }).isRequired).isRequired).isRequired,
+    delMsgHandler: PropTypes.func.isRequired
+}
+
+export default Message;

@@ -1,18 +1,25 @@
+/*
+	程序入口
+*/
+
 import 'babel-polyfill';
 import React from 'react'
 import ReactDOM from 'react-dom'
-import {Provider} from 'react-redux'
-import App from '../components/app/App'
-import {getDataList} from '../actions/action-message'
+import AppRouter from '../routers'
+
+import css from "../iframe/public/reset.css"
+import less from "../iframe/public/index.less"
+
+import {getDataList} from '../actions/action-async'
 import {store} from '../stores'
 
-const root = document.getElementById('container')
 
+const rootElement = document.getElementById('container')
+
+//初始化留言列表
 store.dispatch(getDataList())
 
 ReactDOM.render(
-	<Provider store={store}>
-		<App/>
-	</Provider>,
-	root	
+	<AppRouter/>,
+	rootElement	
 	)
